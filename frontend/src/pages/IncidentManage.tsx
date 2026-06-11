@@ -78,7 +78,8 @@ export function IncidentManage() {
       else if (Array.isArray(value)) formData.append(key, JSON.stringify(value));
       else if (value !== undefined && value !== null) formData.append(key, String(value));
     });
-    const files = (values.photos as { fileList?: Array<{ originFileObj?: File }> } | undefined)?.fileList ?? [];
+    const photoValue = values.photos as Array<{ originFileObj?: File }> | { fileList?: Array<{ originFileObj?: File }> } | undefined;
+    const files = Array.isArray(photoValue) ? photoValue : photoValue?.fileList ?? [];
     files.forEach((file) => {
       if (file.originFileObj) formData.append('photos', file.originFileObj);
     });
@@ -151,7 +152,7 @@ export function IncidentManage() {
           <Form.Item name="involvedWorkerIds" label="涉及人员">
             <Select mode="multiple" options={[1, 2, 3, 4].map((value) => ({ value, label: `人员 #${value}` }))} />
           </Form.Item>
-          <Form.Item name="photos" label="现场照片">
+          <Form.Item name="photos" label="现场照片" valuePropName="fileList" getValueFromEvent={(event) => event?.fileList ?? []}>
             <Upload beforeUpload={() => false} listType="picture">
               <Button icon={<UploadOutlined />}>选择照片</Button>
             </Upload>

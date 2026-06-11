@@ -1,7 +1,8 @@
 import 'reflect-metadata';
+import './config/env';
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
-import express from 'express';
+import express = require('express');
 import { AppModule } from './app.module';
 import { uploadConfig } from './config/upload.config';
 import { GlobalExceptionFilter } from './middlewares/errorHandler.middleware';
@@ -19,7 +20,7 @@ async function bootstrap() {
     res.json({ code: 0, message: 'ok', data: { service: 'safety-platform-backend' } });
   });
 
-  await app.listen(Number(process.env.PORT ?? 3000), '0.0.0.0');
+  await app.listen(Number(process.env.PORT ?? process.env.BACKEND_PORT ?? 19202), '0.0.0.0');
 }
 
 bootstrap();

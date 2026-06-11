@@ -12,9 +12,9 @@ export const databaseConfig = (): TypeOrmModuleOptions => ({
   type: 'mysql',
   host: process.env.DB_HOST ?? '127.0.0.1',
   port: Number(process.env.DB_PORT ?? 3306),
-  username: process.env.DB_USER ?? 'safety_user',
-  password: process.env.DB_PASSWORD ?? 'safety_password',
-  database: process.env.DB_NAME ?? 'safety_platform',
+  username: process.env.DB_USER ?? process.env.MYSQL_USER ?? 'safety_user',
+  password: process.env.DB_PASSWORD ?? process.env.MYSQL_PASSWORD ?? 'safety_password',
+  database: process.env.DB_NAME ?? process.env.MYSQL_DATABASE ?? 'safety_platform',
   entities: [
     AuditLog,
     InspectionItem,

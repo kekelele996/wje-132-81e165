@@ -1,7 +1,7 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import bcrypt from 'bcryptjs';
-import dayjs from 'dayjs';
+import bcrypt = require('bcryptjs');
+import dayjs = require('dayjs');
 import { Repository } from 'typeorm';
 import { WorkerCertification } from '../../models/certification.entity';
 import { InspectionItem } from '../../models/inspectionItem.entity';

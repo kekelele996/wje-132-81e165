@@ -1,6 +1,6 @@
 import { Injectable, NestMiddleware, UnauthorizedException } from '@nestjs/common';
 import { NextFunction, Response } from 'express';
-import jwt from 'jsonwebtoken';
+import jwt = require('jsonwebtoken');
 import { jwtConfig } from '../config/jwt.config';
 import { AuthUser, RequestWithUser } from '../types/interfaces';
 import { UserRole } from '../types/enums';

@@ -1,6 +1,6 @@
 import type { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer-options.interface';
-import multer from 'multer';
-import path from 'node:path';
+import multer = require('multer');
+import * as path from 'node:path';
 import { v4 as uuid } from 'uuid';
 import { uploadConfig } from '../config/upload.config';
 import { ensureUploadDir } from '../utils/fileUpload';
